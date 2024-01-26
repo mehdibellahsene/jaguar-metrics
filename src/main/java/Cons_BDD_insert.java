@@ -5,7 +5,7 @@ import com.rabbitmq.client.DeliverCallback;
 
 public class Cons_BDD_insert {
 
-	private static final String EXCHANGE_NAME = "logs.vital";
+	private static final String EXCHANGE_NAME = "logs";
 
 	private static final String BROKER_HOST = System.getenv("broker_host");
 
