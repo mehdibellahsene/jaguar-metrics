@@ -15,7 +15,7 @@ public class Producer {
 		try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
 			channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
-			String message = argv.length < 1 ? "info: Hello World!" : String.join(" ", argv);
+			String message = argv.length < 1 ? "Prod_Temp: 37°!" : String.join(" ", argv);
 			System.out.println("Routing key : " + ROUTING_KEY + " ; message : " + message);
 
 			channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, null, message.getBytes("UTF-8"));
