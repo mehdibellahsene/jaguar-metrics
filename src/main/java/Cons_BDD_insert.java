@@ -5,7 +5,7 @@ import com.rabbitmq.client.DeliverCallback;
 
 public class Cons_BDD_insert {
 
-	private static final String EXCHANGE_NAME = "logs";
+	private static final String EXCHANGE_NAME = "infos";
 
 	private static final String BROKER_HOST = System.getenv("broker_host");
 
@@ -17,7 +17,7 @@ public class Cons_BDD_insert {
 
 		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 		String queueName = channel.queueDeclare().getQueue();
-		channel.queueBind(queueName, EXCHANGE_NAME, "");
+		channel.queueBind(queueName, EXCHANGE_NAME, "#");
 
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 

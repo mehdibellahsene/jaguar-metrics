@@ -5,14 +5,14 @@ import java.util.Random;
 
 public class Prod_SPO2 {
 
-	private static final String EXCHANGE_NAME = "logs";
-	private static final String ROUTING_KEY = "#my_route";
+	private static final String EXCHANGE_NAME = "infos";
+	private static final String ROUTING_KEY = "infos.vital.spO2";
 
 	private static final String BROKER_HOST = System.getenv("broker_host");
     private static final Random random = new Random();
 	public static int generateSpO2() {
         // 90% chance to generate a normal value
-        if (random.nextDouble() < 0.8) {
+        if (random.nextDouble() < 0.7) {
             // Generate a value in the normal range (94 to 100 inclusive)
             return 94 + random.nextInt(7); // 7 because nextInt is exclusive on the upper bound
         } else {

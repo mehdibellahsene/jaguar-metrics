@@ -6,13 +6,14 @@ import com.rabbitmq.client.ConnectionFactory;
 
 public class Prod_VFC {
 
-	private static final String EXCHANGE_NAME = "logs";
-	private static final String ROUTING_KEY = "#my_route";
+	private static final String EXCHANGE_NAME = "infos";
+	private static final String ROUTING_KEY = "infos.vital.vfc";
     private static final Random random = new Random();
 	private static final String BROKER_HOST = System.getenv("broker_host");
+
 	public static int generateHeartRate() {
         // 90% chance to generate a normal heart rate
-        if (random.nextDouble() < 0.9) {
+        if (random.nextDouble() < 0.7) {
             // Generate a heart rate in the normal range (60 to 100 inclusive)
             return 60 + random.nextInt(41); // 41 because nextInt is exclusive on the upper bound
         } else {

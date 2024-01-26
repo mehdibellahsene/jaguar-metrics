@@ -5,13 +5,13 @@ import java.util.Random;
 
 public class Prod_Vitesse {
 
-	private static final String EXCHANGE_NAME = "logs";
-	private static final String ROUTING_KEY = "#my_route";
+	private static final String EXCHANGE_NAME = "infos";
+	private static final String ROUTING_KEY = "infos";
     private static final Random random = new Random();
 	private static final String BROKER_HOST = System.getenv("broker_host");
 	public static double generateSpeed() {
         // 80% chance to generate a normal training speed
-        if (random.nextDouble() < 0.8) {
+        if (random.nextDouble() < 0.7) {
             // Generate a speed in the normal training range (8 to 12 km/h)
             return 8 + (12 - 8) * random.nextDouble();
         } else {
