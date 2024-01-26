@@ -15,7 +15,7 @@ public class Cons_urgence {
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 
-		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+		channel.exchangeDeclare(EXCHANGE_NAME, "topic");
 		String queueName = channel.queueDeclare().getQueue();
 		channel.queueBind(queueName, EXCHANGE_NAME, "logs.vital.#");
 
