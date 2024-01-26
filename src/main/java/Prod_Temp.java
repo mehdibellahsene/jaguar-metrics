@@ -2,7 +2,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
-public class Producer {
+public class Prod_Temp {
 
 	private static final String EXCHANGE_NAME = "logs";
 	private static final String ROUTING_KEY = "#my_route";

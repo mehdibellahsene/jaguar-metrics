@@ -3,7 +3,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-public class Cons_urgence {
+public class Cons_BDD_insert {
 
 	private static final String EXCHANGE_NAME = "logs";
 

@@ -9,7 +9,7 @@ CURRENT_DIR=$(basename $(pwd))
 
 CONTAINER_RUNTIME_NAME="$CURRENT_DIR-openjdk-17-pubsub-Cons_urgence"
 
-NETWORK_NAME= "mqtt-network"
+NETWORK_NAME=mqtt-network
 
 if [ ! "$(docker network ls | grep "$NETWORK_NAME")" ]; then
   echo "Creating network ..."
