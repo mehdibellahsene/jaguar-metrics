@@ -3,7 +3,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-public class Consumer {
+public class Cons_mobile {
 
 	private static final String EXCHANGE_NAME = "logs";
 
