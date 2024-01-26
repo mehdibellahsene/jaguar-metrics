@@ -17,7 +17,7 @@ public class Cons_urgence {
 
 		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 		String queueName = channel.queueDeclare().getQueue();
-		channel.queueBind(queueName, EXCHANGE_NAME, "logs.vital.#");
+		channel.queueBind(queueName, EXCHANGE_NAME, "logs.vital.*");
 		
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
