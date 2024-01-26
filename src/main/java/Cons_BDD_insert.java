@@ -5,7 +5,7 @@ import com.rabbitmq.client.DeliverCallback;
 
 public class Cons_BDD_insert {
 
-	private static final String EXCHANGE_NAME = "logs";
+	private static final String EXCHANGE_NAME = "logs.vital";
 
 	private static final String BROKER_HOST = System.getenv("broker_host");
 
@@ -15,7 +15,7 @@ public class Cons_BDD_insert {
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 
-		channel.exchangeDeclare(EXCHANGE_NAME, "topic");
+		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 		String queueName = channel.queueDeclare().getQueue();
 		channel.queueBind(queueName, EXCHANGE_NAME, "#");
 
