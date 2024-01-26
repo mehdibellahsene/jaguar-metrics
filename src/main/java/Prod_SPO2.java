@@ -9,21 +9,23 @@ public class Prod_SPO2 {
 	private static final String ROUTING_KEY = "logs.vital.spO2";
 
 	private static final String BROKER_HOST = System.getenv("broker_host");
-    private static final Random random = new Random();
+	private static final Random random = new Random();
+
 	public static int generateSpO2() {
-        // 90% chance to generate a normal value
-        if (random.nextDouble() < 0.7) {
-            // Generate a value in the normal range (94 to 100 inclusive)
-            return 94 + random.nextInt(7); // 7 because nextInt is exclusive on the upper bound
-        } else {
-            return 70 + random.nextInt(14); // Adjust this range as needed
-        }
-    }
+		// 90% chance to generate a normal value
+		if (random.nextDouble() < 0.7) {
+			// Generate a value in the normal range (94 to 100 inclusive)
+			return 94 + random.nextInt(7); // 7 because nextInt is exclusive on the upper bound
+		} else {
+			return 70 + random.nextInt(14); // Adjust this range as needed
+		}
+	}
+
 	public static void main(String[] argv) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost(BROKER_HOST);
 		try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
-			channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+			channel.exchangeDeclare(EXCHANGE_NAME, "topic");
 
 			String message = argv.length < 1 ? "Prod_SPO2: " + generateSpO2() + " % " : String.join(" ", argv);
 
