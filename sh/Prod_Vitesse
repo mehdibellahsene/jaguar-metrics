@@ -1,0 +1,32 @@
+#!/bin/bash
+if [ ! "$(command -v docker)" ]; then
+    echo "docker could not be found"
+    exit 0
+fi
+
+WORKDING_DIR="$(pwd)"
+CURRENT_DIR=$(basename $(pwd))
+
+CONTAINER_RUNTIME_NAME="$CURRENT_DIR-openjdk-17-pubsub-Prod_Vitesse"
+
+NETWORK_NAME=mqtt-network
+
+if [ ! "$(docker network ls | grep "$NETWORK_NAME")" ]; then
+  echo "Creating network ..."
+  docker network create $NETWORK_NAME
+fi
+
+docker run -d -it --rm \
+    -v "$WORKDING_DIR"/app:/app \
+    --net $NETWORK_NAME \
+    -e broker_host=$CURRENT_DIR-broker \
+    --name $CONTAINER_RUNTIME_NAME \
+    openjdk:17
+
+
+docker exec -it  \
+    -w /app \
+    $CONTAINER_RUNTIME_NAME \
+    /bin/bash -c "java -cp /app/app-jar-with-dependencies.jar Prod_Vitesse"|| {
+        docker stop $CONTAINER_RUNTIME_NAME; exit 1
+    }
