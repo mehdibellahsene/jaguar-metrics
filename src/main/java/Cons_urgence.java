@@ -5,7 +5,7 @@ import com.rabbitmq.client.DeliverCallback;
 
 public class Cons_urgence {
 
-	private static final String EXCHANGE_NAME = "infos";
+	private static final String EXCHANGE_NAME = "logs";
 
 	private static final String BROKER_HOST = System.getenv("broker_host");
 
@@ -18,7 +18,7 @@ public class Cons_urgence {
 		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 		String queueName = channel.queueDeclare().getQueue();
 		channel.queueBind(queueName, EXCHANGE_NAME, "infos.vital.#");
-		
+
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 		DeliverCallback deliverCallback = (consumerTag, delivery) -> {

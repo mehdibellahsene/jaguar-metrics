@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Prod_Vitesse {
 
-	private static final String EXCHANGE_NAME = "infos";
-	private static final String ROUTING_KEY = "infos.vitesse";
+	private static final String EXCHANGE_NAME = "logs";
+	private static final String ROUTING_KEY = "logs.vitesse";
     private static final Random random = new Random();
 	private static final String BROKER_HOST = System.getenv("broker_host");
 	public static double generateSpeed() {

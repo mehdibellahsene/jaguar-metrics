@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Prod_SPO2 {
 
-	private static final String EXCHANGE_NAME = "infos";
-	private static final String ROUTING_KEY = "infos.vital.spO2";
+	private static final String EXCHANGE_NAME = "logs";
+	private static final String ROUTING_KEY = "logs.vital.spO2";
 
 	private static final String BROKER_HOST = System.getenv("broker_host");
     private static final Random random = new Random();
