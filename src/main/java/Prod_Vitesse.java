@@ -31,7 +31,7 @@ public class Prod_Vitesse {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost(BROKER_HOST);
 		try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
-			channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+			channel.exchangeDeclare(EXCHANGE_NAME, "topic");
 
 			String message = argv.length < 1 ? "Prod_Vitesse: "+ generateSpeed()  + " km/h!" : String.join(" ", argv);
 			System.out.println("Routing key : " + ROUTING_KEY + " ; message : " + message);
