@@ -19,7 +19,7 @@ public class Cons_urgence {
 		String queueName = channel.queueDeclare().getQueue();
 		channel.queueBind(queueName, EXCHANGE_NAME, "logs.vital.*");
 		
-		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+		System.out.println(" [*] Attendre le message. To exit press CTRL+C");
 
 		DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 			String message = new String(delivery.getBody(), "UTF-8");

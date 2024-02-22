@@ -1,33 +1,39 @@
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DeliverCallback;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 
 public class Cons_BDD_insert {
 
-	private static final String EXCHANGE_NAME = "logs";
+    // Méthode pour insérer les données dans la base de données
+    public static void insertIntoDatabase(String data) {
+        // Informations de connexion à la base de données MySQL
+        String url = "http://localhost:8888/index.php?route=/database/structure&db=phpmyadmin";
+        String user = "root";
+        String password = "root";
 
-	private static final String BROKER_HOST = System.getenv("broker_host");
+        try {
+            // Établir une connexion à la base de données
+            Connection connection = DriverManager.getConnection(url, user, password);
 
-	public static void main(String[] argv) throws Exception {
-		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost(BROKER_HOST);
-		Connection connection = factory.newConnection();
-		Channel channel = connection.createChannel();
+            // Requête SQL pour insérer les données dans une table
+            String sql = "INSERT INTO data (Cons_urgence) VALUES (generateSpO2)";
 
-		channel.exchangeDeclare(EXCHANGE_NAME, "topic");
-		String queueName = channel.queueDeclare().getQueue();
-		channel.queueBind(queueName, EXCHANGE_NAME, "#");
+            // Création d'une instruction préparée pour exécuter la requête SQL
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, data);
 
-		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+            // Exécution de la requête SQL
+            statement.executeUpdate();
 
-		DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-			String message = new String(delivery.getBody(), "UTF-8");
-			System.out.println(" [x] Received '" + delivery.getEnvelope().getRoutingKey() + "':'" + message + "'");
-		};
+            // Fermeture des ressources
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-		channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {
-		});
-	}
-
+    
 }

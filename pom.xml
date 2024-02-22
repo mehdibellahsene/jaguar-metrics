@@ -32,7 +32,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        Producer
+                                        Prod_Temp
                                     </mainClass>
                                 </manifest>
                             </archive>
