@@ -1,6 +1,6 @@
-/bin/
-/target/
-/.classpath
-/.project
-/app/
-/repository
+/java_apps_broker_cons_prod/bin/
+/java_apps_broker_cons_prod/target/
+/java_apps_broker_cons_prod/.classpath
+/java_apps_broker_cons_prod/.project
+/java_apps_broker_cons_prod/app/
+/java_apps_broker_cons_prod/repository

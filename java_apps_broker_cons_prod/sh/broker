@@ -1,0 +1,20 @@
+#!/bin/bash
+if [ ! "$(command -v docker)" ]; then
+    echo "docker could not be found"
+    exit 0
+fi
+
+CURRENT_DIR=$(basename $(pwd))
+
+NETWORK_NAME=mqtt-network
+
+if [ ! "$(docker network ls | grep "$NETWORK_NAME")" ]; then
+  echo "Creating network ..."
+  docker network create $NETWORK_NAME
+fi
+
+docker run -d --rm -it \
+    --name $CURRENT_DIR-broker \
+    -p 15672:15672 -p 5672:5672  \
+    --net $NETWORK_NAME \
+    rabbitmq:3.12.4-management-alpine
