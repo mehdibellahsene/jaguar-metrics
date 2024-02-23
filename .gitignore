@@ -4,3 +4,5 @@
 /java_apps_broker_cons_prod/.project
 /java_apps_broker_cons_prod/app/
 /java_apps_broker_cons_prod/repository
+/site/node_modules
+/urgence_app/node_modules
